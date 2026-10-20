@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduGestor - Sistema do Professor</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TELA DE LOGIN -->
+    <section id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="logo">E</div>
+            <p class="eyebrow">EDUGESTOR</p>
+            <h1>Área do Professor</h1>
+            <p class="subtitle">Organize suas turmas e atividades escolares.</p>
+
+            <form id="loginForm">
+                <label for="email">E-mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+                <label for="senha">Senha</label>
+                <input
+                    type="password"
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+
+                <p id="loginError" class="error"></p>
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Entrar no sistema
+                </button>
+            </form>
+
+            <div class="demo">
+                <strong>Login para demonstração</strong>
+                <p>E-mail: professor@escola.com</p>
+                <p>Senha: Professor@123</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SISTEMA PRINCIPAL -->
+    <div id="appScreen" class="app hidden">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">E</div>
+                <div>
+                    <strong>EduGestor</strong>
+                    <small>Área do professor</small>
+                </div>
+            </div>
+
+            <nav>
+                <button id="navTurmas" class="nav-button active">
+                    ▦ &nbsp; Minhas turmas
+                </button>
+            </nav>
+
+            <div class="user-area">
+                <div class="avatar" id="avatar">P</div>
+                <div class="user-info">
+                    <strong id="teacherName">Professor</strong>
+                    <small>Professor</small>
+                </div>
+                <button id="logoutBtn" class="logout" title="Sair">↪</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">PAINEL DE CONTROLE</p>
+                    <h1 id="pageTitle">Minhas turmas</h1>
+                </div>
+                <button id="topLogoutBtn" class="btn btn-secondary">
+                    Sair
+                </button>
+            </header>
+
+            <!-- PAINEL DE TURMAS -->
+            <section id="dashboardView">
+
+                <div class="welcome-banner">
+                    <div>
+                        <p class="eyebrow light">ORGANIZE SUA ROTINA</p>
+                        <h2>Suas aulas, mais organizadas.</h2>
+                        <p>Gerencie suas turmas e acompanhe suas atividades.</p>
+                    </div>
+                    <div class="banner-icon">▤</div>
+                </div>
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Turmas cadastradas</h2>
+                        <p class="subtitle">Visualize e gerencie suas turmas.</p>
+                    </div>
+
+                    <button id="openClassForm" class="btn btn-primary">
+                        + Nova turma
+                    </button>
+                </div>
+
+                <!-- FORMULÁRIO DE TURMA -->
+                <form id="classForm" class="form-panel hidden">
+                    <h3>Cadastrar turma</h3>
+
+                    <label for="className">Nome da turma *</label>
+                    <input
+                        id="className"
+                        maxlength="100"
+                        placeholder="Ex.: 1º ano A"
+                        required
+                    >
+
+                    <label for="classDescription">Descrição</label>
+                    <input
+                        id="classDescription"
+                        maxlength="255"
+                        placeholder="Ex.: Matemática - Ensino Médio"
+                    >
+
+                    <p id="classError" class="error"></p>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancelClass" class="btn btn-secondary">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Salvar turma
+                        </button>
+                    </div>
+                </form>
+
+                <div id="classGrid" class="class-grid"></div>
+
+                <div id="emptyClasses" class="empty-state hidden">
+                    <div class="empty-icon">▦</div>
+                    <h3>Nenhuma turma cadastrada</h3>
+                    <p>Cadastre sua primeira turma para começar.</p>
+                    <button id="emptyAddClass" class="btn btn-primary">
+                        + Cadastrar turma
+                    </button>
+                </div>
+
+            </section>
+
+            <!-- PAINEL DE ATIVIDADES -->
+            <section id="activitiesView" class="hidden">
+
+                <button id="backToClasses" class="back-button">
+                    ← Voltar para minhas turmas
+                </button>
+
+                <div class="section-heading">
+                    <div>
+                        <p class="eyebrow">GERENCIAMENTO DA TURMA</p>
+                        <h2 id="activitiesClassName">Atividades</h2>
+                        <p id="activitiesClassDescription" class="subtitle"></p>
+                    </div>
+
+                    <button id="openActivityForm" class="btn btn-primary">
+                        + Nova atividade
+                    </button>
+                </div>
+
+                <!-- FORMULÁRIO DE ATIVIDADE -->
+                <form id="activityForm" class="form-panel hidden">
+                    <h3>Cadastrar atividade</h3>
+
+                    <label for="activityTitle">Título *</label>
+                    <input
+                        id="activityTitle"
+                        maxlength="150"
+                        placeholder="Ex.: Lista de exercícios"
+                        required
+                    >
+
+                    <label for="activityDescription">Descrição</label>
+                    <textarea
+                        id="activityDescription"
+                        rows="3"
+                        placeholder="Descreva o que os alunos devem fazer..."
+                    ></textarea>
+
+                    <div class="two-columns">
+                        <div>
+                            <label for="activityDate">Data de entrega</label>
+                            <input id="activityDate" type="date">
+                        </div>
+
+                        <div>
+                            <label for="activityStatus">Status</label>
+                            <select id="activityStatus">
+                                <option value="Pendente">Pendente</option>
+                                <option value="Em andamento">Em andamento</option>
+                                <option value="Concluída">Concluída</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <p id="activityError" class="error"></p>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancelActivity" class="btn btn-secondary">
+                            Cancelar
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Salvar atividade
+                        </button>
+                    </div>
+                </form>
+
+                <div id="activityList" class="activity-list"></div>
+
+                <div id="emptyActivities" class="empty-state hidden">
+                    <div class="empty-icon">✓</div>
+                    <h3>Nenhuma atividade cadastrada</h3>
+                    <p>Adicione uma atividade para esta turma.</p>
+                </div>
+
+            </section>
+
+            <div id="toast" class="toast"></div>
+
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
